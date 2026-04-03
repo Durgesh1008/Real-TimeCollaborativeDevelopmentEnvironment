@@ -100,6 +100,7 @@ const App = () => {
   };
 
   const handleAskAI = async () => {
+    console.log("Requesting AI from:", `${SOCKET_URL}/ai/fix-code`);
     setShowAI(true);
     setAiLoading(true);
     try {

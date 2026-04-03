@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 // Helper to get Gemini Model
 const getModel = () => {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    return genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    return genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 };
 
 // --- FEATURE 1: AI CODE FIXER ---
