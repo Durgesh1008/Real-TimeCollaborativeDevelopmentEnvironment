@@ -22,38 +22,61 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
     };
 
     const handleShareEmail = async () => {
+        // 1. Validation: Ensure we have a Room ID
         if (!roomId) return alert("Please generate or enter a Room ID first!");
 
+        // 2. Get recipient email via prompt
         const email = prompt("Enter the recipient's email address:");
-        if (!email) return;
+        if (!email) return; // User cancelled prompt
 
+        // 3. Basic Email Validation
         if (!email.includes("@")) return alert("Please enter a valid email address.");
-        console.log(`${API_BASE_URL}/api/shareRoom`);
+
+        // 4. URL Cleanup: Prevent double slashes (e.g., https://site.com//api)
+        const cleanBaseUrl = API_BASE_URL.endsWith('/')
+            ? API_BASE_URL.slice(0, -1)
+            : API_BASE_URL;
+
+        const targetUrl = `${cleanBaseUrl}/api/shareRoom`;
+        console.log("🚀 Sending invite to:", targetUrl);
+
         try {
-            const response = await fetch(`${API_BASE_URL}/api/shareRoom`, {
+            // 5. Make the API request
+            const response = await fetch(targetUrl, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, roomId, senderName: userName || "A collaborator" }),
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    roomId,
+                    senderName: userName || "A collaborator"
+                }),
             });
 
-            // Check if the response is empty or not OK
+            // 6. Handle Server Errors (404, 500, etc.)
             if (!response.ok) {
-                const text = await response.text(); // Get raw text instead of JSON to see the error
-                throw new Error(text || `Server Error: ${response.status}`);
+                const errorText = await response.text();
+                // If the server sends back HTML (the 404 page), we handle it gracefully
+                if (errorText.includes("<!DOCTYPE html>")) {
+                    throw new Error(`Route not found (404). Check if backend is deployed with /api/shareRoom`);
+                }
+                throw new Error(errorText || `Server Error: ${response.status}`);
             }
 
-            // Only parse if there is content
+            // 7. Parse Response
             const contentType = response.headers.get("content-type");
             if (contentType && contentType.includes("application/json")) {
                 const data = await response.json();
-                alert("Invitation sent successfully!");
+                alert("✅ Invitation sent successfully!");
             } else {
-                alert("Invite sent! (Server didn't return JSON)");
+                // Handle cases where the email sends but server doesn't return JSON
+                alert("📧 Invite sent! (Note: Server response was not JSON)");
             }
 
         } catch (error) {
-            console.error("Email error:", error);
-            alert(`Connection Failed: ${error.message}`);
+            console.error("❌ Email error details:", error);
+            alert(`Failed to send invite: ${error.message}`);
         }
     };
     // Allow joining by pressing Enter
