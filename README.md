@@ -1,4 +1,4 @@
-# 🚀 CodeSync - Real-Time Collaborative Editor (Frontend)
+# Real-Time Collaborative Editor 
 
 CodeSync is a powerful, real-time collaborative code editor featuring live chat, voice calling, and AI-powered code fixing.
 
@@ -16,9 +16,3 @@ CodeSync is a powerful, real-time collaborative code editor featuring live chat,
 * **Real-time:** Socket.io-client
 * **WebRTC:** PeerJS
 
-## 🚀 Getting Started
-
-1. **Clone the repo**
-   ```bash
-   git clone [https://github.com/yourusername/codesync.git](https://github.com/yourusername/codesync.git)
-   cd codesync/frontend
