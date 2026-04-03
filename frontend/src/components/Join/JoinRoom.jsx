@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
-import axios from 'axios';
-import "./JoinRoom.css";
 
+import "./JoinRoom.css";
+const API_BASE_URL = "http://localhost:5000";
+//const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://codesyncrealtimecodecompilarbackend.onrender.com";
 const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
     const [isEditable, setIsEditable] = useState(false);
-
+    const [showEmailInput, setShowEmailInput] = useState(false);
+    const [inviteEmail, setInviteEmail] = useState("");
     // Generate a fresh UUID and lock the field
     const handleGenerateId = (e) => {
         e.preventDefault();
@@ -25,22 +27,35 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
         const email = prompt("Enter the recipient's email address:");
         if (!email) return;
 
-        // Basic email validation
         if (!email.includes("@")) return alert("Please enter a valid email address.");
-
+        console.log(`${API_BASE_URL}/api/shareRoom`);
         try {
-            await axios.post('http://localhost:5000/api/share-room', {
-                email,
-                roomId,
-                senderName: userName || "A collaborator"
+            const response = await fetch(`${API_BASE_URL}/api/shareRoom`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, roomId, senderName: userName || "A collaborator" }),
             });
-            alert("Invitation sent successfully!");
+
+            // Check if the response is empty or not OK
+            if (!response.ok) {
+                const text = await response.text(); // Get raw text instead of JSON to see the error
+                throw new Error(text || `Server Error: ${response.status}`);
+            }
+
+            // Only parse if there is content
+            const contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                alert("Invitation sent successfully!");
+            } else {
+                alert("Invite sent! (Server didn't return JSON)");
+            }
+
         } catch (error) {
             console.error("Email error:", error);
-            alert("Backend error: Could not send email. Make sure your server is running.");
+            alert(`Connection Failed: ${error.message}`);
         }
     };
-
     // Allow joining by pressing Enter
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && roomId && userName) {
@@ -96,6 +111,20 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
                     </div>
 
                     <div className="button-stack">
+                        {/* New Inline Email Input */}
+                        {showEmailInput && (
+                            <div className="input-group invite-fade-in">
+                                <input
+                                    type="email"
+                                    placeholder="friend@example.com"
+                                    className="input-box full-width invite-input"
+                                    value={inviteEmail}
+                                    onChange={(e) => setInviteEmail(e.target.value)}
+                                    autoFocus
+                                />
+                            </div>
+                        )}
+
                         <button
                             onClick={onJoin}
                             className="btn-join"
@@ -109,8 +138,14 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
                             className="btn-invite"
                             disabled={!roomId}
                         >
-                            Share workspace link
+                            {showEmailInput ? "📧 Send Invite Now" : "Share workspace link"}
                         </button>
+
+                        {showEmailInput && (
+                            <button className="btn-cancel" onClick={() => setShowEmailInput(false)}>
+                                Cancel
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

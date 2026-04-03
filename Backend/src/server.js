@@ -7,7 +7,7 @@ import { initSocket } from "./config/socket.js";
 import { registerEditorHandlers } from "./sockets/editorHandler.js";
 import { registerChatHandlers } from "./sockets/chatHandler.js";
 import { fixCode } from "./controllers/aiController.js";
-
+import { shareRoom } from "./controllers/shareRoomViaEmail.js";
 dotenv.config();
 const app = express();
 const server = http.createServer(app);
@@ -15,7 +15,8 @@ const server = http.createServer(app);
 // 1. Remove path.resolve() and static serving if not hosting frontend here
 app.use(cors({
     origin: "*", // Change this to your Frontend URL once deployed (e.g., https://your-app.vercel.app)
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST"],
+    
 }));
 
 app.use(express.json());
@@ -24,7 +25,8 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.post("/ai/fix-code", fixCode);
-
+console.log("Registering /api/shareRoom route...");
+app.post("/api/shareRoom", shareRoom); 
 const io = initSocket(server);
 
 io.on("connection", (socket) => {
