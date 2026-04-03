@@ -1,0 +1,175 @@
+/* --- AI Panel Sidebar Container --- */
+.ai-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100vh;
+    background: #0d1117;
+    /* Matches Editor Theme */
+    border-left: 1px solid #30363d;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* --- Header Section --- */
+.ai-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: #161b22;
+    border-bottom: 1px solid #30363d;
+}
+
+.ai-header h2 {
+    font-size: 1.2rem;
+    color: #f0f6fc;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.close-ai {
+    background: rgba(248, 81, 73, 0.1);
+    color: #f85149;
+    border: 1px solid rgba(248, 81, 73, 0.2);
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.close-ai:hover {
+    background: #f85149;
+    color: white;
+}
+
+/* --- Loader Styling --- */
+.ai-loader {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #8b949e;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(88, 166, 255, 0.1);
+    border-top: 4px solid #58a6ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Content Section --- */
+.ai-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Hide scrollbar for Chrome/Safari */
+.ai-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.ai-content::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 10px;
+}
+
+.ai-section h3 {
+    font-size: 0.9rem;
+    color: #58a6ff;
+    /* Neon Blue Label */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+/* Explanation Text Box */
+.explanation-text {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.explanation-text pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+}
+
+/* AI Fixed Code Editor Wrapper */
+.ai-editor-wrapper {
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+/* Replace Button styling */
+.replace-button {
+    width: 100%;
+    background: linear-gradient(135deg, #238636 0%, #2ea043 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(35, 134, 54, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.replace-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(35, 134, 54, 0.5);
+    background: #2ea043;
+}
+
+.replace-button:active {
+    transform: translateY(0);
+}

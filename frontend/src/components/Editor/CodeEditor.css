@@ -1,0 +1,88 @@
+/* --- Editor Container --- */
+.editor-wrapper {
+    background-color: #0d1117;
+    /* Matches chat background */
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Top Status Bar --- */
+.editor-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background: #161b22;
+    /* Slightly lighter than main bg */
+    border-bottom: 1px solid #30363d;
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Editing Language Text */
+.editor-status span:first-child {
+    color: #8b949e;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+}
+
+/* User Count Badge */
+.editor-status span:last-child {
+    background: rgba(35, 134, 54, 0.1);
+    /* Subtle green tint */
+    color: #2ecc71;
+    /* Green accent */
+    padding: 4px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Pulse effect for "connected" status */
+.editor-status span:last-child::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background: #2ecc71;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px #2ecc71;
+    animation: pulse-status 2s infinite;
+}
+
+@keyframes pulse-status {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.3);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* --- Monaco Editor Customization --- */
+.monaco-editor {
+    padding-top: 10px;
+}
+
+/* Container for the actual Editor component */
+.editor-wrapper .monaco-editor-container {
+    border-radius: 0 0 12px 12px;
+    overflow: hidden;
+}

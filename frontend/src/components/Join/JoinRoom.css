@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+.main-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #0d0f14;
+    font-family: 'Outfit', sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Background Glowing Orbs for Depth */
+.bg-blur-circle-1 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(52, 152, 219, 0.15);
+    /* Teal accent */
+    filter: blur(100px);
+    top: -50px;
+    left: -50px;
+    z-index: 0;
+}
+
+.bg-blur-circle-2 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: rgba(46, 204, 113, 0.1);
+    /* Green accent */
+    filter: blur(120px);
+    bottom: -100px;
+    right: -100px;
+    z-index: 0;
+}
+
+/* Header */
+.top-header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 30px;
+    z-index: 1;
+    letter-spacing: -1.5px;
+}
+
+.top-header h1 .editor-text {
+    color: #2ecc71;
+    /* Accent green from other images */
+    text-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+}
+
+/* Glassmorphic Card */
+.join-card {
+    background: rgba(255, 255, 255, 0.03);
+    /* Semi-transparent white */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 50px 40px;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 420px;
+    z-index: 1;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 35px;
+    color: #fff;
+    text-align: center;
+}
+
+/* Input Styling with floating labels hierarchy */
+.input-group {
+    margin-bottom: 25px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.input-box {
+    width: 100%;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-sizing: border-box;
+}
+
+.input-box:focus {
+    outline: none;
+    border-color: #3498db;
+    /* Specific accent color from image_8.png */
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 15px rgba(52, 152, 219, 0.1);
+}
+
+.input-box.locked {
+    opacity: 0.6;
+    background: rgba(255, 255, 255, 0.02);
+    color: #64748b;
+    cursor: not-allowed;
+}
+
+/* Buttons */
+.row-group {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-generate {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-generate:hover {
+    transform: scale(1.05);
+}
+
+.btn-toggle-manual {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.btn-toggle-manual:hover {
+    color: #fff;
+}
+
+/* Action Buttons Stack */
+.button-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-join {
+    padding: 16px;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -5px rgba(46, 204, 113, 0.4);
+    transition: all 0.3s;
+}
+
+.btn-join:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 25px -5px rgba(46, 204, 113, 0.5);
+}
+
+.btn-join:disabled {
+    background: #1e293b;
+    color: #64748b;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-invite {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-invite:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.05);
+}
