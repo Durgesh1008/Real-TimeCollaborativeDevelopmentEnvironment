@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import "./JoinRoom.css";
 // const API_BASE_URL = "http://localhost:5000";
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL ;
 const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
     const [isEditable, setIsEditable] = useState(false);
     const [showEmailInput, setShowEmailInput] = useState(false);
