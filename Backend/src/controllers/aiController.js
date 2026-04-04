@@ -1,48 +1,41 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 
-// Initialize the SDK outside the function to save resources
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
+// Initialize Groq with the key from your Render Env
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export const fixCode = async (req, res) => {
     const { code, error, language } = req.body;
-    console.log(`🤖 AI processing request for: ${language}`);
+
+    console.log(`🤖 Groq AI fixing ${language} error...`);
+
+    // Safety check for the API key
+    if (!process.env.GROQ_API_KEY) {
+        return res.status(500).json({ error: "Server Error: GROQ_API_KEY is missing." });
+    }
 
     try {
-        if (!process.env.GEMINI_API_KEY) {
-            return res.status(500).json({ error: "GEMINI_API_KEY is missing in backend env" });
-        }
-
-        // Using 'gemini-1.5-flash' is standard for the latest SDK
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
         const prompt = `You are an expert developer. Fix this ${language} code.
         Error Message: ${error || "Unknown error"}
-        Code:
+        Code to fix:
         ${code}
 
-        Return ONLY a valid JSON object with this structure:
-        {"explanation": "short text", "fixedCode": "corrected code"}
-        Do NOT include any markdown code blocks or backticks.`;
+        IMPORTANT: Return ONLY a valid JSON object. No markdown, no backticks.
+        JSON Structure: {"explanation": "...", "fixedCode": "..."}`;
 
-        const result = await model.generateContent(prompt);
-        const text = result.response.text();
+        const completion = await groq.chat.completions.create({
+            messages: [{ role: "user", content: prompt }],
+            model: "llama3-8b-8192", // This model is extremely fast and free
+            response_format: { type: "json_object" }, // This FORCES Groq to send valid JSON
+        });
 
-        // Remove any markdown like ```json or ``` if Gemini ignores instructions
-        const cleanJson = text.replace(/```json|```/g, "").trim();
+        // Groq sends the answer inside 'content'
+        const rawContent = completion.choices[0].message.content;
+        const data = JSON.parse(rawContent);
 
-        try {
-            const data = JSON.parse(cleanJson);
-            res.status(200).json(data);
-        } catch (parseErr) {
-            console.error("AI returned invalid JSON, sending raw text as fallback.");
-            res.status(200).json({
-                explanation: "I found a fix, but had trouble formatting it.",
-                fixedCode: cleanJson
-            });
-        }
+        res.status(200).json(data);
 
     } catch (err) {
-        console.error("❌ AI Controller Error:", err.message);
+        console.error("❌ Groq Controller Error:", err.message);
         res.status(500).json({
             error: "AI Fix failed",
             message: err.message
