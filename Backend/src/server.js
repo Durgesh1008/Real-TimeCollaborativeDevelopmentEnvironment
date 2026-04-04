@@ -12,11 +12,12 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
-// 1. Remove path.resolve() and static serving if not hosting frontend here
+
 app.use(cors({
-    origin: "*", // Change this to your Frontend URL once deployed (e.g., https://your-app.vercel.app)
-    methods: ["GET", "POST"],
-    
+    origin: ["https://real-time-code-compilar.vercel.app", "http://localhost:5173"],
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }));
 
 app.use(express.json());
@@ -25,7 +26,7 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
 app.post("/ai/fix-code", fixCode);
-console.log("Registering /api/shareRoom route...");
+// console.log("Registering /api/shareRoom route...");
 app.post("/api/shareRoom", shareRoom); 
 const io = initSocket(server);
 

@@ -12,10 +12,12 @@ export const shareRoom = async (req, res) => {
     try {
         // 2. Configure Transporter
         const transporter = nodemailer.createTransport({
-            service: "gmail",
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true, // Use SSL
             auth: {
                 user: process.env.EMAIL_USER,
-                pass: process.env.EMAIL_PASS, // Use App Password here
+                pass: process.env.EMAIL_PASS, // 16-character App Password
             },
         });
 
