@@ -15,7 +15,7 @@ export const shareRoom = async (req, res) => {
 
         const msg = {
             to: email, // Recipient
-            from: process.env.SENDGRID_SENDER_EMAIL, // MUST be your verified SendGrid sender email
+            from: { name: 'VelocityPad', email: process.env.SENDGRID_SENDER_EMAIL }, // MUST be your verified SendGrid sender email
             subject: `🚀 ${senderName} invited you to a Coding Session`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e1e4e8; border-radius: 10px;">
