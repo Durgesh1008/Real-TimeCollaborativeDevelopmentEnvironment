@@ -24,7 +24,7 @@ export const fixCode = async (req, res) => {
 
         const completion = await groq.chat.completions.create({
             messages: [{ role: "user", content: prompt }],
-            model: "llama3-8b-8192", // This model is extremely fast and free
+            model: "llama-3.3-70b-versatile", // This model is extremely fast and free
             response_format: { type: "json_object" }, // This FORCES Groq to send valid JSON
         });
 
