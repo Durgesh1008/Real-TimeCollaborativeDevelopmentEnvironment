@@ -19,7 +19,6 @@ app.use(cors({
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
 }));
-
 app.use(express.json());
 
 // ⚠️ DELETE OR COMMENT OUT THESE TWO LINES:

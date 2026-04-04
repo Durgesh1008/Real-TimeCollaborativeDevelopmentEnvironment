@@ -100,20 +100,42 @@ const App = () => {
   };
 
   const handleAskAI = async () => {
-    console.log("Requesting AI from:", `${SOCKET_URL}/ai/fix-code`);
+    // Ensure we are using the correct Backend URL
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL 
+
+    // Cleanup URL to avoid "https://site.com//ai/fix-code"
+    const cleanBaseUrl = BACKEND_URL.replace(/\/+$/, "");
+    const targetUrl = `${cleanBaseUrl}/ai/fix-code`;
+
+    console.log("🚀 Requesting AI from:", targetUrl);
+
     setShowAI(true);
     setAiLoading(true);
+
     try {
-      const res = await fetch(`${SOCKET_URL}/ai/fix-code`, {
+      const res = await fetch(targetUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code, error: lastError, language }),
+        body: JSON.stringify({
+          code,
+          error: lastError || "No specific error provided",
+          language
+        }),
       });
+
+      // Handle non-OK responses (like 404 or 500)
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.error || `Server returned ${res.status}`);
+      }
+
       const data = await res.json();
       setAiExplanation(data.explanation);
       setAiFixedCode(data.fixedCode);
+
     } catch (err) {
-      setAiExplanation(`⚠️ Error: ${err.message}`);
+      console.error("AI Fetch Error:", err);
+      setAiExplanation(`⚠️ Connection Failed: ${err.message}`);
     } finally {
       setAiLoading(false);
     }
