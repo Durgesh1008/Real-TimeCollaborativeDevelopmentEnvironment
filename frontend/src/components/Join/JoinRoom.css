@@ -201,3 +201,71 @@
 .btn-invite:hover:not(:disabled) {
     background: rgba(255, 255, 255, 0.05);
 }
+.button-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+/* Animated Invite Container */
+.invite-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.invite-input {
+    animation: slideDown 0.3s ease forwards;
+    border: 1px solid #30363d;
+    background: rgba(13, 17, 23, 0.8) !important;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Status Messages */
+.status-text {
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+.status-text.success {
+    color: #238636;
+}
+
+.status-text.error {
+    color: #f85149;
+}
+
+.btn-cancel-text {
+    background: none;
+    border: none;
+    color: #8b949e;
+    font-size: 0.8rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.btn-invite.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* UI Overrides for VelocityPad theme */
+.editor-text {
+    color: #0366d6;
+    text-shadow: 0 0 10px rgba(3, 102, 214, 0.3);
+}
