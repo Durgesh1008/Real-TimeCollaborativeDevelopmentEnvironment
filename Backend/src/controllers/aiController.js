@@ -35,10 +35,11 @@ export const fixCode = async (req, res) => {
         res.status(200).json(data);
 
     } catch (err) {
-        console.error("❌ Groq Controller Error:", err.message);
+        console.error("❌ Groq Error:", err);
         res.status(500).json({
-            error: "AI Fix failed",
-            message: err.message
+            error: err.message || "An error occurred while processing the AI request.",
+            message: err.message, 
+            stack: err.stack
         });
     }
 };
