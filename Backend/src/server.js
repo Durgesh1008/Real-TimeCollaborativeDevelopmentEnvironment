@@ -14,7 +14,7 @@ const server = http.createServer(app);
 
 
 app.use(cors({
-    origin: ["https://real-time-code-compilar.vercel.app", "http://localhost:5173"],
+    origin: ["https://real-time-code-compilar.vercel.app", "http://localhost:5173","https://velocitypad.in"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
