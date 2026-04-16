@@ -34,6 +34,7 @@ Experience real-time collaboration here:
 ---
 
 ## 📂 Project Structure
+```
 CodeSync-RealTime/
 ├── Backend/                 # Express.js Server
 │   ├── src/
@@ -61,6 +62,7 @@ CodeSync-RealTime/
 │   ├── Final_Report.pdf     # Project Final Report
 │   └── Copyright_Form.pdf   # Filed Copyright Application
 └── README.md                # Project Documentation
+```
 
 ## 💻 Local Setup & Installation
 
