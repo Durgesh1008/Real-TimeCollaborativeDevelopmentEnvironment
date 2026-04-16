@@ -33,6 +33,35 @@ Experience real-time collaboration here:
 
 ---
 
+## 📂 Project Structure
+CodeSync-RealTime/
+├── Backend/                 # Express.js Server
+│   ├── src/
+│   │   ├── config/          # Database & API configurations
+│   │   ├── controllers/     # Route logic
+│   │   ├── services/        # Business logic & GROQ AI integration
+│   │   ├── sockets/         # Socket.io real-time logic
+│   │   ├── utils/           # Helper functions
+│   │   └── server.js        # Entry point
+│   ├── temp/                # Temporary code execution files
+│   ├── .env                 # Environment variables (Internal use)
+│   └── package.json
+├── frontend/                # React.js Client (Vite)
+│   ├── src/
+│   │   ├── assets/          # Images & Icons
+│   │   ├── components/      # Reusable UI components
+│   │   ├── hooks/           # Custom React hooks
+│   │   ├── utils/           # Client-side utility functions
+│   │   ├── App.jsx          # Main application component
+│   │   └── main.jsx         # React DOM entry point
+│   ├── .env                 # Frontend environment variables
+│   ├── package.json
+│   └── vite.config.js
+├── docs/                    # MANDATORY FOR SUBMISSION
+│   ├── Final_Report.pdf     # Project Final Report
+│   └── Copyright_Form.pdf   # Filed Copyright Application
+└── README.md                # Project Documentation
+
 ## 💻 Local Setup & Installation
 
 Follow these steps to get the project running locally:
