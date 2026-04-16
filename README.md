@@ -64,7 +64,7 @@ PORT=5000
 NODE_ENV=development
 GROQ_API_KEY=your_groq_key
 SENDGRID_API_KEY=your_sendgrid_key
-FRONTEND_URL = your frontend url (for sending invitaion mail)
+FRONTEND_URL=your_frontend_url (for sending invitation mail)
 ```
 
 ### 4. Run the Project
