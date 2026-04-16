@@ -39,8 +39,8 @@ Follow these steps to get the project running locally:
 
 ### 1. Clone the Repository
 ```bash
-git clone [https://github.com/Durgesh1008/CodeSyncRealTimeCodeCompilar.git](https://github.com/Durgesh1008/CodeSyncRealTimeCodeCompilar.git)
-cd CodeSyncRealTimeCodeCompilar
+git clone [https://github.com/Durgesh1008/CodeSyncRealTimeCodeCompilar.git]
+cd CodeSync-RealTime
 ```
 ### 2. Install Dependencies
 ## For the Backend:
