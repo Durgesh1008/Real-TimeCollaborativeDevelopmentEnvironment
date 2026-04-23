@@ -1,4 +1,4 @@
-# 💻 VelocityPad | Real-Time Collaborative Code Compiler
+# 💻 VelocityPad | Real-Time Collaborative Development Environment
 
 **VelocityPad** is a high-performance, multi-user collaborative code editor and compiler designed for seamless pair programming. Built with the **MERN stack**, **Socket.io**, and **GROQ AI**, it allows developers to write, execute, and debug code in a synchronized environment with integrated communication tools.
 
