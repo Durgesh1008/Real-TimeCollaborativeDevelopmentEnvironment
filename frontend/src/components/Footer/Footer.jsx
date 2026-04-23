@@ -7,14 +7,13 @@ const Footer = () => {
         <footer style={styles.footerContainer}>
             <div style={styles.content}>
                 <p style={styles.copyrightText}>
-                    © {currentYear} <strong>Durgesh Kumar</strong>. All Rights Reserved.
+                    © {currentYear} <strong>Durgesh</strong> | Intellectual Property Protected
                 </p>
-                <p style={styles.legalText}>
-                    Intellectual Property Protected |
+                <div style={styles.legalRow}>
                     <span style={styles.diaryBadge}>
-                        Copyright Pending: Diary No. [APNA_DIARY_NUMBER_DALO]/2026-CO/SW
+                        Copyright Pending: Diary No. SW-18572/2026-CO
                     </span>
-                </p>
+                </div>
             </div>
         </footer>
     );
@@ -23,37 +22,36 @@ const Footer = () => {
 const styles = {
     footerContainer: {
         width: '100%',
-        backgroundColor: '#1a1a1a', // Aapke dark theme se match karega
-        color: '#ffffff',
-        padding: '20px 0',
-        borderTop: '1px solid #333',
-        marginTop: 'auto',
+        backgroundColor: '#111', // Slightly darker for depth
+        color: '#888',           // Subtle text color
+        padding: '12px 0',       // Reduced padding
+        borderTop: '1px solid #222',
         textAlign: 'center',
         fontFamily: "'Inter', sans-serif",
     },
     content: {
         display: 'flex',
         flexDirection: 'column',
-        gap: '8px',
+        alignItems: 'center',
+        gap: '4px',
     },
     copyrightText: {
         margin: 0,
-        fontSize: '14px',
-        letterSpacing: '0.5px',
+        fontSize: '13px',
+        color: '#ccc',
     },
-    legalText: {
-        margin: 0,
-        fontSize: '12px',
-        color: '#b3b3b3',
+    legalRow: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     diaryBadge: {
-        marginLeft: '8px',
-        backgroundColor: '#333',
-        padding: '2px 8px',
-        borderRadius: '4px',
         fontSize: '11px',
-        color: '#4ade80', 
-        border: '1px solid #444',
+        color: '#4ade80', // Greenish highlight
+        backgroundColor: 'rgba(74, 222, 128, 0.1)',
+        padding: '1px 8px',
+        borderRadius: '12px',
+        border: '1px solid rgba(74, 222, 128, 0.2)',
     }
 };
 
