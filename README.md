@@ -111,5 +111,16 @@ npm run dev
 npm start
 ```
 
-### 👤 Author
-Durgesh Kumar
+## ⚖️ Intellectual Property & Copyright
+
+This project is officially registered for copyright with the Government of India.
+
+- **Status:** Copyright Application Filed (Pending)
+- **Diary Number:** [SW-18572/2026-CO]
+- **Date of Application:** April 23, 2026
+- **Class of Work:** Computer Software
+- **Author:** Durgesh Kumar
+
+> **Note:** The "AI Activation Logic" and unique real-time synchronization architecture are protected under this application. Any unauthorized reproduction or distribution of this source code is strictly prohibited.
+
+
