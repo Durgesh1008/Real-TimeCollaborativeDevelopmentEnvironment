@@ -6,6 +6,7 @@ import CodeEditor from "./components/Editor/CodeEditor";
 import ChatBox from "./components/Chat/ChatBox";
 import AIPanel from "./components/AI/AIPanel";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const [joined, setJoined] = useState(false);
@@ -290,6 +291,7 @@ const App = () => {
           setShowAI(false);
         }}
       />
+      <Footer/> 
     </div>
   );
 };
