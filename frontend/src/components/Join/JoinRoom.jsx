@@ -153,7 +153,7 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };
