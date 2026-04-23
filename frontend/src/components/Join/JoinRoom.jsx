@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from "uuid";
 import "./JoinRoom.css";
-
+import Footer from '../Footer/Footer';
 const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
@@ -153,6 +153,7 @@ const JoinRoom = ({ roomId, setRoomId, userName, setUserName, onJoin }) => {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
 };
