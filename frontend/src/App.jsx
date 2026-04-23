@@ -291,7 +291,7 @@ const App = () => {
           setShowAI(false);
         }}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
     
   );
