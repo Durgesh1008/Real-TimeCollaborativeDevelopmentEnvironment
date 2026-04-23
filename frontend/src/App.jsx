@@ -291,11 +291,11 @@ const App = () => {
           setShowAI(false);
         }}
       />
-       
+      <Footer />
     </div>
     
   );
-  <Footer />
+  
 };
 
 export default App;
