@@ -1,4 +1,4 @@
-# 💻 VelocityPad | Real-Time Collaborative Code Compiler
+# 💻 VelocityPad | Real-Time Collaborative Development Environment
 
 **VelocityPad** is a high-performance, multi-user collaborative code editor and compiler designed for seamless pair programming. Built with the **MERN stack**, **Socket.io**, and **GROQ AI**, it allows developers to write, execute, and debug code in a synchronized environment with integrated communication tools.
 
@@ -111,5 +111,16 @@ npm run dev
 npm start
 ```
 
-### 👤 Author
-Durgesh Kumar
+## ⚖️ Intellectual Property & Copyright
+
+This project is officially registered for copyright with the Government of India.
+
+- **Status:** Copyright Application Filed (Pending)
+- **Diary Number:** [SW-18572/2026-CO]
+- **Date of Application:** April 23, 2026
+- **Class of Work:** Computer Software
+- **Author:** Durgesh Kumar
+
+> **Note:** The "AI Activation Logic" and unique real-time synchronization architecture are protected under this application. Any unauthorized reproduction or distribution of this source code is strictly prohibited.
+
+
